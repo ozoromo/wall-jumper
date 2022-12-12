@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
+
 pub struct Matrix {
     data: Vec<Vec<i32>>,
 }
@@ -77,6 +78,9 @@ pub fn calc_bfs(matrix: Matrix, start: (usize, usize), end: (usize, usize), step
                 neighbours.push((x, y - 1))
             }
 
+        if neighbours.is_empty() && !visited.contains(&end) {
+            return vec![];
+        }
 
         for neighbour in neighbours {
             let (nx, ny) = neighbour;
@@ -87,6 +91,8 @@ pub fn calc_bfs(matrix: Matrix, start: (usize, usize), end: (usize, usize), step
                 parent.insert(neighbour, current);
             }
         }
+
+
     }
 
     let mut path = Vec::new();
@@ -94,7 +100,11 @@ pub fn calc_bfs(matrix: Matrix, start: (usize, usize), end: (usize, usize), step
 
     while current != start {
         path.push(current);
-        current = parent[&current];
+        if parent.contains_key(&current) {
+            current = *parent.get(&current).unwrap();
+        } else {
+            return vec![];
+        }
     }
 
     path.push(start);

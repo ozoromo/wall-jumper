@@ -29,12 +29,13 @@ mod tests {
     #[test]
     fn test_pathfinding() {
         let mut matrix = Matrix::new();
-        matrix.add_row(vec![0, 1, 2]);
+        matrix.add_row(vec![0, 2, 2]);
         matrix.add_row(vec![5, 4, 3]);
         matrix.add_row(vec![6, 7, 8]);
 
         let path = calc_bfs(matrix, (0, 0), (2, 2), 1);
 
-        assert_eq!(path, vec![(0, 0), (1, 0), (2, 0), (2, 1), (1, 1), (0, 1), (0, 2), (1, 2), (2, 2)]);
+        assert_eq!(path, vec![])
+        //assert_eq!(path, vec![(0, 0), (1, 0), (2, 0), (2, 1), (1, 1), (0, 1), (0, 2), (1, 2), (2, 2)]);
     }
 }
