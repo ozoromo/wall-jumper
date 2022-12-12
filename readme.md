@@ -1,6 +1,6 @@
 # Wall-jumper
 
-A python library written in rust for the very specific purpose of finding a path through a height map (with a given max step height).
+A python library written in rust for the very specific purpose of finding a path through a height map (with a given max step height) using BFS.
 
 ## Installation
 
