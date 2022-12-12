@@ -210,7 +210,7 @@ checksum = "58ee9362deb4a96cef4d437d1ad49cffc9b9e92d202b6995674e928ce684f112"
 
 [[package]]
 name = "wall-jumper"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "pyo3",
 ]

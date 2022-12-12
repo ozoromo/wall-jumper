@@ -5,7 +5,7 @@ use crate::bfs::{calc_bfs, Matrix};
 
 
 #[pyfunction]
-fn py_bfs(py_matrix: Vec<Vec<i32>>, start_pos: (i32, i32), end_pos: (i32, i32), step_size: i32) -> Vec<(usize, usize)> {
+fn find_path(py_matrix: Vec<Vec<i32>>, start_pos: (i32, i32), end_pos: (i32, i32), step_size: i32) -> Vec<(usize, usize)> {
     let mut matrix = Matrix::new();
     for row in py_matrix {
         matrix.add_row(row);
@@ -17,7 +17,7 @@ fn py_bfs(py_matrix: Vec<Vec<i32>>, start_pos: (i32, i32), end_pos: (i32, i32), 
 /// A Python module implemented in Rust.
 #[pymodule]
 fn wall_jumper(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(py_bfs, m)?)?;
+    m.add_function(wrap_pyfunction!(find_path, m)?)?;
     Ok(())
 }
 
@@ -29,13 +29,13 @@ mod tests {
     #[test]
     fn test_pathfinding() {
         let mut matrix = Matrix::new();
-        matrix.add_row(vec![0, 2, 2]);
+        matrix.add_row(vec![0, 1, 2]);
         matrix.add_row(vec![5, 4, 3]);
         matrix.add_row(vec![6, 7, 8]);
 
         let path = calc_bfs(matrix, (0, 0), (2, 2), 1);
 
-        assert_eq!(path, vec![])
-        //assert_eq!(path, vec![(0, 0), (1, 0), (2, 0), (2, 1), (1, 1), (0, 1), (0, 2), (1, 2), (2, 2)]);
+        //assert_eq!(path, vec![])
+        assert_eq!(path, vec![(0, 0), (1, 0), (2, 0), (2, 1), (1, 1), (0, 1), (0, 2), (1, 2), (2, 2)]);
     }
 }
